@@ -1,0 +1,35 @@
+.menu{
+    padding:20px;
+    background-color: #92298e;
+    position: sticky;
+    
+}
+.agaram{
+    margin:-85px 0px 8px 73px;
+}
+.para{
+     position: relative;
+}
+li{
+    display: inline-block;
+    
+}
+ul{
+   margin:18px 0px 0px 750px;
+  
+    margin-left:80%;
+    
+}
+.image{
+    display: inline-block;
+}
+p{
+    position: absolute;
+    top: 440;
+    color: red;
+    margin-left: 15%;
+    font-size: 40px;
+    font-style: italic;
+
+    
+}

@@ -2,10 +2,14 @@
     <head>
         
         <link rel="stylesheet" href="style.css"/>
+        <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
     </head>
     <body>
+        <form id="contactForm"></form>
         <div id="login">
-            
+
             <label>User Name</label><br>
             <input type="text" id="name"/><br>
             <label>Password</label><br>
@@ -13,5 +17,7 @@
             <button id="add" onclick="logincheck()">login</button> 
             <script src="main.js" type="text/Javascript"></script>
         </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     </body>
 </html>

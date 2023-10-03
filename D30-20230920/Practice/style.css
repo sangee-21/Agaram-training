@@ -1,0 +1,53 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+
+.main{
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    border: 1px solid yellow;
+    margin: 10px;
+    padding: 50px;
+    position: relative;
+}
+body{
+    background-color: blue;
+   
+}
+p{
+    /* margin: 5px; */
+    background-color: aqua;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+ul{
+    border: 1px solid green;
+    background-color: blueviolet;
+  
+}
+li{
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: aqua;
+}
+.child{
+    background-color: white;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.box{
+    background-color: green;
+    border: 1px;
+    padding: 50px;
+    position: absolute;
+    bottom: 0;
+
+}

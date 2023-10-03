@@ -17,7 +17,8 @@ var db = firebase.database();
 
 var dataRef = db.ref("registeredUsers");
 
-var auth=firebase.auth();
+var auth = firebase.auth();
+
 console.log(auth)
 // click login-goto login page
 // function logincheck() {
@@ -57,55 +58,80 @@ function register() {
 }
 // add newuser detail in localStorage 
 function checkreg() {
-    console.log('register function called');
     let reg_name = document.getElementById("orname").value
     let reg_email = document.getElementById("email").value
     let reg_password = document.getElementById("orpassword").value
 
-    let reg_data = {
-        name: reg_name,
-        email: reg_email,
-        password: reg_password,
-    }
-
-    dataRef.once('value')
-        .then(function (snapshot) {
-            let data = snapshot.val();
-            console.log(data);
-            if (data) {
-                data.push(reg_data);
-                db.ref(`registeredUsers`).set(data);
-            }
-            else {
-                db.ref(`registeredUsers/${0}`).set(reg_data);
-            }
+    auth.createUserWithEmailAndPassword(reg_email, reg_password)
+        .then((userCredential) => {
+            alert("register sucessfully")
+            console.log(userCredential)
         })
+        .catch((error) => {
+            console.log(error.code)
+            console.log(error.message)
+        });
+    // console.log('register function called');
+    // let reg_name = document.getElementById("orname").value
+    // let reg_email = document.getElementById("email").value
+    // let reg_password = document.getElementById("orpassword").value
+
+    // let reg_data = {
+    //     name: reg_name,
+    //     email: reg_email,
+    //     password: reg_password,
+    // }
+
+    // dataRef.once('value')
+    //     .then(function (snapshot) {
+    //         let data = snapshot.val();
+    //         console.log(data);
+    //         if (data) {
+    //             data.push(reg_data);
+    //             db.ref(`registeredUsers`).set(data);
+    //         }
+    //         else {
+    //             db.ref(`registeredUsers/${0}`).set(reg_data);
+    //         }
+    //     })
 }
 
 function logincheck() {
 
     let user_detail = document.getElementById("name").value
     let password = document.getElementById("password").value
-    dataRef.once('value')
-        .then(function (snapshot) {
-            let data = snapshot.val();
-            console.log(data);
-            if (data) {
-                for (i = 0; i < data.length; i++) {
 
-                    if ((data[i].name == user_detail) && (data[i].password == password)) {
-                        alert("login successfully")
-                        localStorage.setItem("loggedin", true)
-                        localStorage.setItem("logname", data[i].name)
-                        window.location = "home.html";
-                        break;
-                    }
-                    // else{
-                    //     alert("Please Register First");                
-                    // }
-                }
-            }
-        })
+    auth.signInWithEmailAndPassword(user_detail, password)
+    .then((userCredential) => {
+        alert("login sucessfully")
+        window.location = "home.html";
+        console.log(userCredential)
+
+  })
+  .catch((error) => {
+        console.log(error.code)
+        console.log(error.message)
+  });
+    // dataRef.once('value')
+    //     .then(function (snapshot) {
+    //         let data = snapshot.val();
+    //         console.log(data);
+    //         if (data) {
+    //             for (i = 0; i < data.length; i++) {
+
+    //                 if ((data[i].name == user_detail) && (data[i].password == password)) {
+    //                     alert("login successfully")
+    //                     localStorage.setItem("loggedin", true)
+    //                     localStorage.setItem("logname", data[i].name)
+    //                     window.location = "home.html";
+    //                     break;
+    //                 }
+    //                 // else{
+    //                 //     alert("Please Register First");                
+    //                 // }
+    //             }
+    //         }
+    //     })
 }
 // let reg_user = document.getElementById("orname").value
 // let reg_email = document.getElementById("email").value
@@ -221,10 +247,10 @@ function p_icon(z) {
     //     }
     // }
 }
-function secure() {
-    if (!localStorage.getItem("loggedin")) {
-        window.location = "frontpage.html"
-    }
+// function secure() {
+//     if (!localStorage.getItem("loggedin")) {
+//         window.location = "frontpage.html"
+//     }
 
-}
+// }
 
