@@ -40,17 +40,55 @@ console.log(auth)
 // }
 // click logout shows login page
 function logoutcheck() {
-    localStorage.removeItem("loggedin")
-    window.location = "login.html"
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var userid = user.uid;
+            db.ref(`registeredUsers/${userid}`).once('value')
+                .then(function (snapshot) {
+                    var data = snapshot.val();
+                    if (data.loggedin == true) {
+                       let log={
+                        loggedin:false,
+                       }
+                       db.ref('registeredUsers/'+userid).set(log)
+                       window.location="login.html"
+                    }
+                }
+                )
+
+
+        }
+    })
+
+
+    // localStorage.removeItem("loggedin")
+    // window.location = "login.html"
 
 }
 // if refresh- username should be show
 function checklogin() {
-    if (localStorage.getItem("loggedin")) {
-        let a = localStorage.getItem("logname")
-        document.getElementById("para").innerHTML = `<span>Welcome ${a}</span>`
-        rl()
-    }
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var userid = user.uid;
+            db.ref(`registeredUsers/${userid}`).once('value')
+                .then(function (snapshot) {
+                    var data = snapshot.val();
+                    if (data.loggedin == true) {
+                        document.getElementById("para").innerHTML = data.u_name
+                        rl()
+                    }
+                }
+                )
+
+
+        }
+    })
+
+    // if (localStorage.getItem("loggedin")) {
+    //     let a = localStorage.getItem("logname")
+    //     document.getElementById("para").innerHTML = `<span>Welcome ${a}</span>`
+    //     rl()
+    // }
 }
 // click register button - open register page
 function register() {
@@ -97,21 +135,31 @@ function checkreg() {
 }
 
 function logincheck() {
-
+    let usr_nme = document.getElementById("nme").value
     let user_detail = document.getElementById("name").value
     let password = document.getElementById("password").value
 
     auth.signInWithEmailAndPassword(user_detail, password)
-    .then((userCredential) => {
-        alert("login sucessfully")
-        window.location = "home.html";
-        console.log(userCredential)
+        .then((userCredential) => {
+            alert("login sucessfully")
+            let usr = auth.currentUser;
+            let userid = usr.uid
+            console.log(userid)
+            let dts = {
+                u_name: usr_nme,
+                u_email: user_detail,
+                loggedin: true,
 
-  })
-  .catch((error) => {
-        console.log(error.code)
-        console.log(error.message)
-  });
+            }
+            db.ref('registeredUsers/' + userid).set(dts)
+            window.location = "home.html";
+            console.log(userCredential)
+
+        })
+        .catch((error) => {
+            console.log(error.code)
+            console.log(error.message)
+        });
     // dataRef.once('value')
     //     .then(function (snapshot) {
     //         let data = snapshot.val();
@@ -150,26 +198,49 @@ function logincheck() {
 // (add new user detail in table)(dynamic)
 
 function rl() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var userid = user.uid;
+            db.ref(`registeredUsers/${userid}`).once('value')
+                .then(function (snapshot) {
+                    var data = snapshot.val();
+                    if (data) {
+                         
+                            htmldata=""
+                            htmldata = htmldata + `<tr>
+                                        <td>${data.u_name}</td>
+                                        <td>${data.u_email}</td>
+                                        <td><button id="pencil" onclick="p_icon('${data.u_email}')">&#9998</button></td>
+                                        <td><button id="dustpin" onclick="d_icon('${data.u_email}')">&#128465</button></td>
+                                    </tr>`
+                            document.getElementById("mytable").innerHTML = htmldata
+                        
+                    }
+                })
+
+
+        }
+    })
     // let b = JSON.parse(localStorage.getItem("userdetails"))
     // localStorage.setItem("userdetails",JSON.stringify(b))
-    dataRef.once('value')
-        .then(function (snapshot) {
-            let data = snapshot.val();
-            console.log(data);
-            htmldata = ""
-            if (data) {
-                for (i = 0; i < data.length; i++) {
+    // dataRef.once('value')
+    //     .then(function (snapshot) {
+    //         let data = snapshot.val();
+    //         console.log(data);
+    //         htmldata = ""
+    //         if (data) {
+    //             for (i = 0; i < data.length; i++) {
 
-                    htmldata = htmldata + `<tr>
-                            <td>${data[i].name}</td>
-                            <td>${data[i].email}</td>
-                            <td><button id="pencil" onclick="p_icon('${data[i].email}')">&#9998</button></td>
-                            <td><button id="dustpin" onclick="d_icon('${data[i].email}')">&#128465</button></td>
-                        </tr>`
-                    document.getElementById("mytable").innerHTML = htmldata
-                }
-            }
-        })
+    //                 htmldata = htmldata + `<tr>
+    //                         <td>${data[i].name}</td>
+    //                         <td>${data[i].email}</td>
+    //                         <td><button id="pencil" onclick="p_icon('${data[i].email}')">&#9998</button></td>
+    //                         <td><button id="dustpin" onclick="d_icon('${data[i].email}')">&#128465</button></td>
+    //                     </tr>`
+    //                 document.getElementById("mytable").innerHTML = htmldata
+    //             }
+    //         }
+    //     })
 }
 // click delete icon-delete in table and localStorage
 
@@ -247,10 +318,27 @@ function p_icon(z) {
     //     }
     // }
 }
-// function secure() {
-//     if (!localStorage.getItem("loggedin")) {
-//         window.location = "frontpage.html"
-//     }
+function secure() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            var userid = user.uid;
+            db.ref(`registeredUsers/${userid}`).once('value')
+                .then(function (snapshot) {
+                    var data = snapshot.val();
+                    if (data.loggedin == false) {
+                        window.location="frontpage.html"
+                    }
+                }
+                )
 
-// }
+
+        }
+    })
+
+  
+
+}
+function logbutton(){
+    window.location="login.html"
+}
 
