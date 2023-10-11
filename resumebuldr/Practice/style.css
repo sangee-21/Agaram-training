@@ -1,0 +1,51 @@
+*{
+    /* text-align: center; */
+}
+body{
+    /* text-align: center; */
+    line-height: 20px;
+    background-color:blue;
+}
+.tab{
+    margin-left: 41%;
+    line-height: 60px;
+    
+}
+#myresume{
+    background-color: white;
+    border-radius: 50%;
+    
+}
+.top{
+    
+    text-align: center;
+    background-color: rgb(18, 172, 199);
+    
+}
+.imge{
+    margin:-2% 70% 6% 2%;
+    background-color: rgb(35, 0, 100);
+   border-radius: 56px;
+   
+   text-align: center;
+}
+.education{
+    margin: -38% 24% 0% 39%;
+    background-color:;
+   
+}
+.dec{
+    background-color:rgb(64, 32, 178);
+    text-align: center;
+    
+    
+}
+.poto{
+    margin: -3% 0% 0% 74%;
+    
+}
+.student{
+    margin: -11% 0% 0% 0%;
+}
+    
+
