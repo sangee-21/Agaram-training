@@ -37,14 +37,14 @@ function handlekey(p_key, ele_id, skil) {
     document.getElementById(ele_id).value = ""
     display()
 }
-function handle1(p_key) {
+function handle1(p_key, id) {
     if (!user_details[p_key]) {
         user_details[p_key] = []
 
     }
     user_details[p_key].push(each_temp)
 
-
+    addobj(p_key, id)
     display()
     let a = user_details[p_key]
 
@@ -56,8 +56,9 @@ function handle1(p_key) {
         }
 
     }
-    addobj(user_details[p_key])
+    // addobj(user_details[p_key])
     // showdata(each_temp)
+
     each_temp = {}
 }
 
@@ -76,6 +77,7 @@ function delt(p_key, ele, skil) {
     display()
     handle(p_key, skil)
     handle1(p_key, ele_id)
+
 }
 
 function display() {
@@ -111,22 +113,58 @@ function handlemult(ele) {
 
 // }
 
-function addobj(p_key) {
-    let data = ""
-    for (i = 0; i < p_key.length; i++) {
-        console.log(p_key[i])
-        for (const key in p_key[i]) {
-            console.log(`${key}:${p_key[i][key]}`)
-            data = data + `<tr>
-            <td>${key}</td>
-            <td>${p_key[i][key]}</td>
-            <td><button type="button" onclick="tabledel(${p_key[i][key]})" >&#128465</button></td>
-            <tr>`
-            console.log(data)
+function addobj(tablet, id) {
+    // let Data = ""
+    let tab = user_details[tablet]
+    let newd = ""
+    for (i = 0; i < tab.length; i++) {
+        // console.log(p_key[i])
+        // let newd=""
+        // for (const key in p_key[i]) {
+        // console.log(`${key}:${p_key[i][key]}`)
+        //     let s_list=JSON.stringify(tab[i])
+        //     newd = newd +`<div id="${p_key[i]}">${s_list}<button type="button" class="btn btn-primary " aria-label="Close" onclick="dt('${i}','${p_key}')">
+        //     <span aria-hidden="true">&times;</span>
+        // console.log("all",p_key[i])
+        //   </button> </div>`
+        newd = newd + `<tr>
+            <td>${tab[i].inst_name}</td>
+            <td>${tab[i].inst_level}</td>
+            <td>${tab[i].inst_year}</td>
+            <td>${tab[i].inst_percentage}</td>
+            <td><button type="button" onclick="dt('${i}','${id}','${tablet}')">Delete</button></td>
+            </tr>`
+
+
+    }
+    // delt(p_key, ele, skil)
+    document.getElementById(id).innerHTML = newd
+    display()
+}
+
+function dt(rem, dat,p_key) {
+    // user_details[dat].splice(rem,1)
+    // let de=document.getElementById(`${dat[rem]}`)
+    // de.remove()
+
+    let data = user_details[p_key]
+    let new_data = []
+    for (i = 0; i < data.length; i++) {
+
+        if (i != rem) {
+            // console.log(i)
+            new_data.push(data[i])
+
+
         }
     }
-    document.getElementById("table").innerHTML = data
+    user_details[p_key] = new_data
+    display()
+    addobj(p_key,dat)
 }
+
+
+
 function post() {
     $.ajax({
         type: "post",
@@ -205,55 +243,63 @@ function get_resume(s) {
         data: {
             request: "get_resume_by_id",
             user: "sangee",
-            id:s
+            id: s
         },
         success: function (response) {
             // console.log("response",JSON.parse(response))
-            let a=JSON.parse(response)
-            let b=a.data.data
-            let c=JSON.parse(b)
-                console.log(c)
-                
-                $('#Name').html(c.Name)
-                $("#Declaration").html(c.Declaration)
-                $("#Email").html(c.Email)
-                $("#jobtitle").html(c.Jobtitle)
-                let m=c.Personal_details
-                $("#fathername").html(m.FatherName )
-                
-                $("#mothername").html(m.MotherName)
-                $("#objective").html(c.Objective)
+            let a = JSON.parse(response)
+            let b = a.data.data
+            let c = JSON.parse(b)
+            console.log(c)
 
-               
-                let d=c.skill
-                let e=""
-                console.log(d)
-                for(i=0; i<d.length;i++){
-                    console.log(d[i])
-                    e=e+`<p>${d[i]}</p>`
-                   
-                }
-                $('#skills').html(e) 
+            $('#Name').html(c.Name)
+            $("#Declaration").html(c.Declaration)
+            $("#Email").html(c.Email)
+            $("#jobtitle").html(c.Jobtitle)
+            let m = c.Personal_details
+            $("#fathername").html(m.FatherName)
 
-                let hobi=c.hobby
-                let h=""
-                for (i=0;i<hobi.length;i++){
-                    console.log(hobi[i])
-                h=h+`<p>${hobi[i]}</p>`
-                }
-                $('#hobbies').html(h)
+            $("#mothername").html(m.MotherName)
+            $("#objective").html(c.Objective)
+            $("#address").html(c.address)
+            $("#place").html(c.place)
+            let lan1=c.language
+            let o=""
+            for(i=0;i<lan1.length;i++){
+                o=o+`<p>${lan1[i]}</p>`
+            }
+            $('#language').html(o)
 
-                let edu=c.education
-                let v=""
-                for(i=0; i<edu.length;i++){
-                v=v+`<tr><td>${edu[i].inst_year}</td>
+
+            let d = c.skill
+            let e = ""
+            console.log(d)
+            for (i = 0; i < d.length; i++) {
+                console.log(d[i])
+                e = e + `<p>${d[i]}</p>`
+
+            }
+            $('#skills').html(e)
+
+            let hobi = c.hobby
+            let h = ""
+            for (i = 0; i < hobi.length; i++) {
+                console.log(hobi[i])
+                h = h + `<p>${hobi[i]}</p>`
+            }
+            $('#hobbies').html(h)
+
+            let edu = c.education
+            let v = ""
+            for (i = 0; i < edu.length; i++) {
+                v = v + `<tr><td>${edu[i].inst_year}</td>
                     <td>${edu[i].inst_name}</td>
                     <td>${edu[i].inst_level}</td>
                     <td>${edu[i].inst_percentage}</td></tr>`
-                }
-                $("#edu").html(v)
+            }
+            $("#edu").html(v)
 
-                
+
         },
         error: function (err) {
             console.log("error", err)
@@ -277,14 +323,14 @@ var getUrlParameter = function getUrlParameter(sParam) {
     return false;
 };
 
-function generatePDF(){
-    let page=document.getElementById('myresume');
-    var opt={
-        margin:1,
-        filename:'demopdf.pdf',
-        image:{type:'jpeg',quality:0.98},
-        html2canvas:{scale:2},
-        jsPdf:{unit:'in',format:'letter',orientation:'portrait'}
+function generatePDF() {
+    let page = document.getElementById('myresume');
+    var opt = {
+        margin: 1,
+        filename: 'demopdf.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPdf: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     html2pdf().set(opt).from(page).save();
 

@@ -44,6 +44,20 @@
                     onkeyup="ParseData(this)">
             </div>
         </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-2 col-form-label">Address</label>
+            <div class="col-10">
+                <input type="text" name="adress" class="form-control" id="staticEmail" value=""
+                    onkeyup="ParseData(this)">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-2 col-form-label">Place</label>
+            <div class="col-10">
+                <input type="text" name="place" class="form-control" id="staticEmail" value=""
+                    onkeyup="ParseData(this)">
+            </div>
+        </div>
     </div>
     <h1>Personal Details</h1>
 
@@ -87,6 +101,19 @@
             <badge id="box1"></badge>
         </div>
     </div>
+    <div class="mb-3 row">
+        <label for="staticEmail" class="col-4 col-form-label">Languages</label>
+        <div class="col-10">
+            <input type="text" class="form-control" id="lan_name" value="">
+        </div>
+        <div>
+            <button type="button" onclick="handlekey('language','lan_name','lan')">Add</button>
+        </div>
+        <div>
+            <badge id="lan"></badge>
+        </div>
+    </div>
+
     <h1>Education Details</h1>
     <div>
         <input type="text" id="inst_name" name="inst_name" placeholder="inst_name" onkeyup="handlemult(this)">
@@ -95,10 +122,24 @@
         <input type="text" id="inst_percentage" name="inst_percentage" placeholder="percentage"
             onkeyup="handlemult(this)">
         <div>
-            <button type="button" onclick="handle1('education')">Add</button>
+            <button type="button" onclick="handle1('education','disEdu')">Add</button>
         </div>
         <div>
-            <p id="table"></p>
+            <!-- <p id="educattion"></p> -->
+            <table class="table table-dark">
+                <tr>
+                    <th>inst_name</th>
+                    <th>inst_level</th>
+                    <th>inst_year</th>
+                    <th>inst_percentage</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody id="disEdu">
+
+                </tbody>
+            </table>
+            
+            
         </div>
     </div>
     <div>

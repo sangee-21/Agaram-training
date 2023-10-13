@@ -12,31 +12,35 @@ body{
     
 }
 #myresume{
-    background-color: white;
+    background-color:rgb(182, 255, 206);
     border-radius: 50%;
+    border: 5px solid black
     
 }
 .top{
     
     text-align: center;
     background-color: rgb(18, 172, 199);
+    border: 5px solid black;
+   
     
 }
 .imge{
-    margin:-2% 70% 6% 2%;
-    background-color: rgb(35, 0, 100);
+    margin:5% 70% 6% 2%;
+    background-color:darkgrey;
    border-radius: 56px;
-   
+   border: 5px solid black;
    text-align: center;
 }
 .education{
-    margin: -38% 24% 0% 39%;
-    background-color:;
+    margin: -41% 24% 0% 45%;
+
    
 }
 .dec{
-    background-color:rgb(64, 32, 178);
+    background-color:cadetblue;
     text-align: center;
+    border: 5px solid black;
     
     
 }
@@ -47,5 +51,18 @@ body{
 .student{
     margin: -11% 0% 0% 0%;
 }
-    
+h2{
+    font-style: italic;
+    text-decoration:underline;
+}
+.tab{
+    border-color: black;
+    /* background-color:rgb(121, 182, 23); */
+}
+p{
+    font-size:large;
+}  
+hr{
+    border: 1px solid black;
+}
 
