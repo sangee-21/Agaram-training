@@ -1,0 +1,41 @@
+body{
+    background-color:cornflowerblue;
+}
+.box{
+    margin-left: 18%;
+    margin-right: 15%;
+    background-color:lightgrey;
+    border: 5px solid darkblue;
+}
+.name{
+    text-align: center;
+    margin-top: -22%;
+
+}
+.left{
+    position: relative;
+    margin-left: 10%;
+}
+.right{
+    position: absolute;
+    top: 198px;
+    right: 403;
+}
+hr{
+    border: 3px solid darkblue;
+}
+h2{
+    text-decoration: underline;
+}
+.poto{
+    margin-left: 5%;
+    padding-top: 2%;
+  
+}
+td{
+    padding: 5%;
+}
+img{
+     border: 5px solid darkblue;
+   
+}

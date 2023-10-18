@@ -1,0 +1,44 @@
+.poto{
+    margin-left: 80%;
+    margin-top: -10%;
+}
+/* .box{
+    background-color: rgb(24, 175, 163); */
+/* } */
+.left{
+    position: relative;
+    margin-left: 10%;
+}
+.right{
+    position: absolute;
+    top: 350px;
+    right: 428px;
+}
+.obj{
+    text-align: center;
+    height: 100px;
+    background-color:;
+}
+hr{
+    border: 5px solid black;
+}
+td{
+    padding: 8%;
+}
+.name{
+    margin-left: 5%;
+}
+.top{
+    background-color:lightsteelblue;
+  padding: 1%;
+}
+.myresume{
+    background-color:lightslategrey ;
+}
+.dec{
+    text-align: center;
+    background-color: lightsteelblue;
+}
+.content{
+    background-color: lightcyan;
+}

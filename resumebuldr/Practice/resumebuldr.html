@@ -47,7 +47,7 @@
         <div class="mb-3 row">
             <label for="staticEmail" class="col-2 col-form-label">Address</label>
             <div class="col-10">
-                <input type="text" name="adress" class="form-control" id="staticEmail" value=""
+                <input type="text" name="address" class="form-control" id="staticEmail" value=""
                     onkeyup="ParseData(this)">
             </div>
         </div>
@@ -114,6 +114,19 @@
         </div>
     </div>
 
+     <!-- <div class="mb-3 row">
+        <label for="staticEmail" class="col-4 col-form-label">Projects</label>
+        <div class="col-10">
+            <input type="text" class="form-control" id="pro_name" value="">
+        </div>
+        <div>
+            <button type="button" onclick="handlekey('language','pro_name','lan')">Add</button>
+        </div>
+        <div>
+            <badge id="project"></badge>
+        </div>
+    </div>  -->
+
     <h1>Education Details</h1>
     <div>
         <input type="text" id="inst_name" name="inst_name" placeholder="inst_name" onkeyup="handlemult(this)">
@@ -142,6 +155,36 @@
             
         </div>
     </div>
+
+    <h1>Project Details</h1>
+    <div>
+        <input type="text" id="pro_name" name="pro_name" placeholder="pro_name" onkeyup="handlemult(this)">
+        <input type="text" id="pro_year" name="pro_year" placeholder="pro_year" onkeyup="handlemult(this)">
+        <input type="text" id="pro_description" name="pro_description" placeholder="pro_description"
+            onkeyup="handlemult(this)">
+            
+        <div>
+            <button type="button" onclick="handle1('project','dispro')">Add</button>
+        </div>
+        <div>
+            <p id="educattion"></p>
+            <table class="table table-dark">
+                <tr>
+                    <th>Project Name</th>
+                    <th>Project Year</th>
+                    <th>Project Description</th>
+
+                    <th>Delete</th>
+                </tr>
+                <tbody id="dispro">
+
+                </tbody>
+            </table>
+           
+            
+        </div>
+    </div>
+
     <div>
         <button type ="button" class ="btn btn-success mt-2" onclick="post()">submit</button>
     </div>
@@ -151,28 +194,9 @@
     <div>
         <button type ="button" class ="btn btn-success mt-2" onclick="del()">Delete resume</button>
     </div>
-    <!-- <div>
+     <div>
         <button type ="button" class ="btn btn-success mt-2" onclick="get_resume()">get resume id</button>
-    </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 
 

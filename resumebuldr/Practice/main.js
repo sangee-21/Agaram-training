@@ -102,47 +102,39 @@ function handle(p_key, skil) {
 function handlemult(ele) {
     each_temp[ele.name] = ele.value
 }
-// function showdata(each_temp){
-//     // let data = [...user_details[p_key]]
-//     htmldata=""
-//     for(key in each_temp){
-//         console.log(`${key} : ${each_temp[key]}`)
-
-//     }
-
-
-// }
 
 function addobj(tablet, id) {
     // let Data = ""
+    console.log(tablet)
     let tab = user_details[tablet]
+    console.log(tab)
     let newd = ""
     for (i = 0; i < tab.length; i++) {
-        // console.log(p_key[i])
-        // let newd=""
-        // for (const key in p_key[i]) {
-        // console.log(`${key}:${p_key[i][key]}`)
-        //     let s_list=JSON.stringify(tab[i])
-        //     newd = newd +`<div id="${p_key[i]}">${s_list}<button type="button" class="btn btn-primary " aria-label="Close" onclick="dt('${i}','${p_key}')">
-        //     <span aria-hidden="true">&times;</span>
-        // console.log("all",p_key[i])
-        //   </button> </div>`
-        newd = newd + `<tr>
+        
+        if (tablet== "project") {
+            newd = newd + `<tr>
+                <td>${tab[i].pro_name}</td>
+                <td>${tab[i].pro_year}</td>
+                <td>${tab[i].pro_description}</td>
+                <td><button type="button" onclick="dt('${i}','${id}','${tablet}')">Delete</button></td>
+                </tr>`
+        }
+        else {
+            newd = newd + `<tr>
             <td>${tab[i].inst_name}</td>
             <td>${tab[i].inst_level}</td>
             <td>${tab[i].inst_year}</td>
             <td>${tab[i].inst_percentage}</td>
             <td><button type="button" onclick="dt('${i}','${id}','${tablet}')">Delete</button></td>
             </tr>`
-
-
+        }
+        // delt(p_key, ele, skil)
     }
-    // delt(p_key, ele, skil)
     document.getElementById(id).innerHTML = newd
     display()
 }
 
-function dt(rem, dat,p_key) {
+function dt(rem, dat, p_key) {
     // user_details[dat].splice(rem,1)
     // let de=document.getElementById(`${dat[rem]}`)
     // de.remove()
@@ -159,8 +151,8 @@ function dt(rem, dat,p_key) {
         }
     }
     user_details[p_key] = new_data
+    addobj(p_key, dat)
     display()
-    addobj(p_key,dat)
 }
 
 
@@ -205,8 +197,10 @@ function get() {
             
                 <td>${b[i].id}</td>
                 <td>${b[i].user}</td>
-                <td><button onclick="delt(${b[i].id})">Delete</button></td>
-                <td><a href="single.html?id=${b[i].id}">button</a><td>
+                <td><button onclick="del(${b[i].id})">Delete</button></td>
+                <td><a href="single.html?id=${b[i].id}">link1</a></td>
+                <td><a href="template1.html?id=${b[i].id}">link2</a></td>
+                <td><a href="template3.html?id=${b[i].id}">link3</a></td>
               </tr>`
             }
             $("#table").html(view)
@@ -233,6 +227,7 @@ function del(z) {
             console.log("error", err)
         }
     })
+
     get()
 }
 
@@ -258,15 +253,17 @@ function get_resume(s) {
             $("#jobtitle").html(c.Jobtitle)
             let m = c.Personal_details
             $("#fathername").html(m.FatherName)
+            let moth = c.Personal_details
+            $("#mothername").html(moth.MotherName)
 
             $("#mothername").html(m.MotherName)
             $("#objective").html(c.Objective)
             $("#address").html(c.address)
             $("#place").html(c.place)
-            let lan1=c.language
-            let o=""
-            for(i=0;i<lan1.length;i++){
-                o=o+`<p>${lan1[i]}</p>`
+            let lan1 = c.language
+            let o = ""
+            for (i = 0; i < lan1.length; i++) {
+                o = o + `<p>${lan1[i]}</p>`
             }
             $('#language').html(o)
 
@@ -298,6 +295,17 @@ function get_resume(s) {
                     <td>${edu[i].inst_percentage}</td></tr>`
             }
             $("#edu").html(v)
+
+            let proj = c.project
+            let pro1 = ""
+            for (i = 0; i < proj.length; i++) {
+                pro1 = pro1 + `<tr>
+                    <td>${proj[i].pro_name}</td>
+                    <td>${proj[i].pro_year}</td>
+                    <td>${proj[i].pro_description}</td>
+                    </tr>`
+            }
+            $("#pro").html(pro1)
 
 
         },
