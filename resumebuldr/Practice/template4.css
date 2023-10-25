@@ -1,0 +1,21 @@
+#left{
+    position: relative;
+}
+#right{
+    position: absolute;
+    top: 318px;
+    right: 183;
+}
+#tab{
+    width: 500px;
+}
+#top{
+    background-color: purple;
+}
+#bod{
+    background-color: rgb(247, 169, 247);
+    top: 0%;
+}
+td{
+    line-height: 40px;
+}

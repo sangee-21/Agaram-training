@@ -200,7 +200,9 @@ function get() {
                 <td><button onclick="del(${b[i].id})">Delete</button></td>
                 <td><a href="single.html?id=${b[i].id}">link1</a></td>
                 <td><a href="template1.html?id=${b[i].id}">link2</a></td>
-                <td><a href="template3.html?id=${b[i].id}">link3</a></td>
+                <td><a href="template4.html?id=${b[i].id}">link3</a></td>
+                <td><a href="template3.html?id=${b[i].id}">link4</a></td>
+                <td><a href="template6.html?id=${b[i].id}">link5</a></td>
               </tr>`
             }
             $("#table").html(view)
@@ -257,6 +259,7 @@ function get_resume(s) {
             $("#mothername").html(moth.MotherName)
 
             $("#mothername").html(m.MotherName)
+            $("#Number").html(c.Number)
             $("#objective").html(c.Objective)
             $("#address").html(c.address)
             $("#place").html(c.place)

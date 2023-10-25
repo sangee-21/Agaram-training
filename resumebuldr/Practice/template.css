@@ -2,22 +2,20 @@
     margin-left: 80%;
     margin-top: -10%;
 }
-/* .box{
-    background-color: rgb(24, 175, 163); */
-/* } */
+
 .left{
     position: relative;
     margin-left: 10%;
 }
 .right{
     position: absolute;
-    top: 350px;
+    top: 379px;
     right: 428px;
 }
 .obj{
     text-align: center;
     height: 100px;
-    background-color:;
+  
 }
 hr{
     border: 5px solid black;
@@ -41,4 +39,7 @@ td{
 }
 .content{
     background-color: lightcyan;
+}
+table{
+    width: 283px;
 }
